@@ -3,27 +3,43 @@ class Player
 
 	def initialize(name)
 		@name = name
-		#@score = score
-		#@battles = battles
+		@battles = {"Win" => 0, "Lose" => 0, "Run" => 0}
+	end
+
+	def player_stats
+		puts "Trainer Stats"
+		puts "Name: #{player.name}"
+		puts "Rubymon: #{rubymon.name}"
+		puts "Battles Won: "
 	end
 end
 
 class Rubymon
 	attr_accessor :name, :level, :hp
 
-	def initialize(name, level)
+	def initialize(name, level, hp)
 		@name = name
 		@level = level
 		@hp = hp
 	end
+
+	def rubymon_stats
+		puts "*******************"
+		puts "Your Rubymon Stats"
+		puts "Name: #{rubymon.name}"
+		puts "Level: #{rubymon.level}"
+		puts "HP: #{rubymon.hp}"
+		puts "*******************"
+	end
 end
 
 class WildRubymon
-	attr_accessor :name, :level
+	attr_accessor :name, :level, :hp
 
-	def initialize(name, level)
+	def initialize(name, level, hp)
 		@name = ['Kibachu', 'Hachipuff', 'Sisimew', 'Olepod', 'Muniensy', 'Caballomon']
 		@level = rubymon.level
+		@hp = hp
 	end
 	#name.shuffle! <----- no deja que el programa corra :(
 
@@ -33,23 +49,12 @@ class WildRubymon
 	end
 end
 
-class Battle
-		attr_accessor
-
-		def initialize
-	@atack
-	@defense
-	@special
-	@run
-		end
-end
-
 class Game
 	attr_accessor :player, :rubymon
 
 	def initialize
 		@player = Player.new("name")
-		@rubymon = Rubymon.new("name", "level")
+		@rubymon = Rubymon.new("name", 1, 10)
 	end
 
 	def meet_you
@@ -74,22 +79,25 @@ class Game
   
    	puts "Yeah! I think #{rubymon.name} it's a perfect partner for you"
   	puts "Your #{rubymon.name} starts at level 1, you need to train him in order to get stronger"
-    rubymon.level = 1
-    rubymon.hp = 10
 	end
 
-	def show_stats
-		puts "*******************"
-		puts "#{rubymon.name} "
-		puts "Level: #{rubymon.level}"
-		puts "HP: #{rubymon.hp}"
-		puts "*******************"
+	def show_rubymon_stats
+		rubymon_stats
+	end
+
+	def show_player_stats
+		player_stats
 	end
 
 	def start
     meet_you
     choose_rubymon
-    show_stats
+    show_rubymon_stats
+    show_player_stats
+  end
+
+  def battle
+
   end
 
 end
